@@ -28,9 +28,9 @@ export default class Article extends Component {
   render() {
     const {
       article, 
-      actions 
+      store 
     } = this.props;
-    const author = actions.lookupAuthor(article.authorId);
+    const author = store.lookupAuthor(article.authorId);
     
     return (
       <div style={styles.article}>

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Article from './Article';
 
 export default class ArticleList extends Component {
+
   render() {
     return (
       <div>
@@ -10,7 +11,7 @@ export default class ArticleList extends Component {
           return <Article
             key={article.id}
             article={article}
-            actions={this.props.articleActions}
+            store={this.props.store}
           />;
         })}
       </div>

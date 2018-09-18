@@ -8,7 +8,7 @@ const testProps = {
     a: { id: 'a'},
     b: { id: 'b'}
   },
-  articleActions: {
+  store: {
     lookupAuthor: jest.fn(() => ({}))
   }
 };

@@ -1,11 +1,11 @@
-import DataApi from '../src/DataApi';
+import StateApi from '../src/StateApi';
 import {data} from '../dist/testData';
 
-const api = new DataApi(data);
+const store = new StateApi(data);
 
-describe('DataApi', () => {
+describe('StateApi', () => {
   it('exposes articles an object', () => {
-    const articles = api.getArticles();
+    const articles = store.getState().articles;
     const articleId = data.articles[0].id;
     const articleTitle = data.articles[0].title;
 
@@ -14,7 +14,7 @@ describe('DataApi', () => {
 
   });
   it('exposes authors an object', () => {
-    const authors = api.getAuthors();
+    const authors = store.getState().authors;
     const authorId = data.authors[0].id;
     const authorFirstName = data.authors[0].firstName;
 

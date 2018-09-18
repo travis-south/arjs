@@ -1,28 +1,28 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 import ArticleList from './ArticleList';
 
-import DataApi from '../DataApi';
-import {data} from '../../dist/testData';
-
-const api = new DataApi(data);
+import StateApi from '../StateApi';
 
 export default class App extends Component {
-  constructor(){
-    super();
-    this.state = {
-      articles: api.getArticles(),
-      authors: api.getAuthors()
-    };
+  state = this.props.store.getState();
+  async componentDidMount() {
+    const rawData = await axios.get('/api');
+    const api = new StateApi(rawData.data);
+  
+    this.setState(() => {
+      return {
+        articles: api.getState().articles,
+        authors: api.getState().authors,
+      };
+    });
   }
-  articleActions = {
-    lookupAuthor: (authorId) => this.state.authors[authorId]
-  };
   render() {
     return (
       <ArticleList 
         articles={this.state.articles}
-        articleActions={this.articleActions}
+        store={this.props.store}
       />
     );
   }
