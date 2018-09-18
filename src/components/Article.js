@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import storeProvider from '../components/StoreProvider';
 
 const styles = {
   article: {
@@ -24,12 +27,9 @@ const styles = {
   }
 };
 
-export default class Article extends Component {
+class Article extends Component {
   render() {
-    const {
-      article, 
-      store 
-    } = this.props;
+    const {article, store} = this.props;
     const author = store.lookupAuthor(article.authorId);
     
     return (
@@ -46,3 +46,13 @@ export default class Article extends Component {
     );
   }
 }
+
+Article.propTypes = {
+  article: PropTypes.shape({
+    date: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+  }),
+};
+
+export default storeProvider(Article);

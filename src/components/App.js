@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import ArticleList from './ArticleList';
 
@@ -7,14 +8,22 @@ import StateApi from '../StateApi';
 
 export default class App extends Component {
   state = this.props.store.getState();
+  static childContextTypes = {
+    store: PropTypes.object,
+  }
+  getChildContext() {
+    return {
+      store: this.props.store,
+    };
+  }
   async componentDidMount() {
     const rawData = await axios.get('/api');
-    const api = new StateApi(rawData.data);
+    const store = new StateApi(rawData.data);
   
     this.setState(() => {
       return {
-        articles: api.getState().articles,
-        authors: api.getState().authors,
+        articles: store.getState().articles,
+        authors: store.getState().authors,
       };
     });
   }

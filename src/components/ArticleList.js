@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Article from './Article';
+import ArticleContainer from './Article';
 
 export default class ArticleList extends Component {
 
@@ -8,10 +8,9 @@ export default class ArticleList extends Component {
     return (
       <div>
         {Object.values(this.props.articles).map((article) => {
-          return <Article
+          return <ArticleContainer
             key={article.id}
             article={article}
-            store={this.props.store}
           />;
         })}
       </div>
