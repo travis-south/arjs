@@ -10,6 +10,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.listen(config.port, function listenHandler(){
-  console.info(`Running on ${config.port}`);
+app.listen(config.port, () => {
+  console.info(`Running on port ${config.port}`);
 });
