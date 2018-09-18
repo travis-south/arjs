@@ -7,7 +7,7 @@ class App extends React.Component {
   };
 
   asyncFunc = () => {
-    return Promise.resolve(4514);
+    return Promise.resolve(41514);
   };
 
   async componentDidMount() {

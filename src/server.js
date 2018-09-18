@@ -12,5 +12,4 @@ app.get('/', (req, res) => {
 
 app.listen(config.port, function listenHandler(){
   console.info(`Running on ${config.port}`);
-  console.info('kaboom');
 });
