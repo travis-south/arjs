@@ -1,9 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  watchOptions: {
-    poll: true
-  },
   entry: [
     'babel-polyfill',
     './src/components/Index.js'
