@@ -20,14 +20,18 @@ const storeProvider = (extraProps = (store) => {
     }
     onStoreChange = () => {
       if (this.subscriptionId){
-        this.forceUpdate();
+        this.setState(this.usedState());
       }
     }
+    usedState = () => {
+      return extraProps(this.context.store, this.props);
+    }
+    state = this.usedState();
     render(){
       return (
         <Component 
           {...this.props}
-          {...extraProps(this.context.store, this.props)}
+          {...this.usedState()}
         />
       );
     }

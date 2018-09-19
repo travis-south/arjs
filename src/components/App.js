@@ -9,7 +9,6 @@ import SearchBar from './Searchbar';
 import Timestamp from './Timestamp';
 
 export default class App extends PureComponent {
-  state = this.props.store.getState();
   static childContextTypes = {
     store: PropTypes.object,
   }
@@ -32,11 +31,16 @@ export default class App extends PureComponent {
     this.subscriptionId = this.props.store.subscribe(this.onStoreChange);
     this.props.store.startClock();
   }
+  appState = () => {
+    const {articles, searchTerm} = this.props.store.getState();
+    return {articles, searchTerm};
+  }
+  state = this.appState();
   componentWillUnmount() {
     this.props.store.unsubcribe(this.subscriptionId);
   }
   onStoreChange = () => {
-    this.setState(this.props.store.getState());
+    this.setState(this.appState());
   }
   filterArticles = () => {
     let {articles, searchTerm} = this.state;
