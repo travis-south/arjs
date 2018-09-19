@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 
-import ArticleContainer from './Article';
+import Article from './Article';
 
 export default class ArticleList extends PureComponent {
-
+  
   render() {
     return (
       <div>
         {Object.values(this.props.articles).map((article) => {
-          return <ArticleContainer
+          return <Article
             key={article.id}
             article={article}
           />;
