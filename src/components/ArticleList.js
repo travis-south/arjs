@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import ArticleContainer from './Article';
 
-export default class ArticleList extends Component {
+export default class ArticleList extends PureComponent {
 
   render() {
     return (

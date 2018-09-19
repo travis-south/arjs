@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import storeProvider from '../components/StoreProvider';
@@ -27,11 +27,10 @@ const styles = {
   }
 };
 
-class Article extends Component {
+class Article extends PureComponent {
   render() {
-    const {article, store} = this.props;
-    const author = store.lookupAuthor(article.authorId);
-    
+    const {article, author} = this.props;
+
     return (
       <div style={styles.article}>
         <div style={styles.title}>{article.title}</div>
@@ -55,4 +54,10 @@ Article.propTypes = {
   }),
 };
 
-export default storeProvider(Article);
+function extraProps(store, origProps) {
+  return {
+    author: store.lookupAuthor(origProps.article.authorId),
+  };
+}
+
+export default storeProvider(extraProps)(Article);
