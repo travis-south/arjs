@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
   const initialContent = await serverRender();
-  res.render('index', { ...initialContent });
+  res.render('index-' + app.get('env'), { ...initialContent });
 });
 
 app.get('/api', (req, res) => {

@@ -3,3 +3,4 @@ node_modules
 !/dist/.gitkeep
 !/dist/testData.json
 coverage
+build
