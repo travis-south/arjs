@@ -1,8 +1,10 @@
 import React, {PureComponent} from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import pickBy from 'lodash.pickby';
 
 import ArticleList from './ArticleList';
+import StateApi from '../StateApi';
 import SearchBar from './Searchbar';
 import Timestamp from './Timestamp';
 
@@ -21,7 +23,14 @@ export default class App extends PureComponent {
       store: this.props.store,
     };
   }
-  componentDidMount() {
+  async componentDidMount() {
+    const rawData = await axios.get('/api');
+    const store = new StateApi(rawData.data);
+    const articles = store.getState().articles;
+    this.setState({
+      articles,
+    });
+
     this.subscriptionId = this.props.store.subscribe(this.onStoreChange);
     this.props.store.startClock();
   }
